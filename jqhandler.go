@@ -10,8 +10,6 @@ import (
 )
 
 func JqHandler(w http.ResponseWriter, clientRequest *http.Request, jqPattern string, serverURL string) {
-	// Report our source location
-	w.Header().Add("X-Source", "https://github.com/brimstone/jq-httpd")
 	// Report our return time
 	w.Header().Add("Content-Type", "application/json; charset=utf-8")
 	// figure out if we have the right number of parameters

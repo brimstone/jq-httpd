@@ -27,6 +27,10 @@ func errorjson(w http.ResponseWriter, code int, errString string) {
 }
 
 func (h httphandler) ServeHTTP(w http.ResponseWriter, request *http.Request) {
+	// Report our source location
+	w.Header().Add("X-Source", "https://github.com/brimstone/jq-httpd")
+	// Report our LICENSE
+	w.Header().Add("X-License", "AGPLv3 http://www.gnu.org/licenses/agpl-3.0.txt")
 	parts := strings.Split(request.URL.Path, "/")
 	if parts[1] == "jq" {
 		if len(parts) < 5 {
