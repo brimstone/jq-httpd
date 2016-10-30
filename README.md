@@ -10,7 +10,7 @@ Start the server. It defaults to listening on port 8081.
 
 Send JSON via POST, PUT, whatever to `/jq/FILTER/to/DEST`
 
-- FILTER: has to be a valid jq filter, urlencoded
+- FILTER: has to be a valid [jq](https://stedolan.github.io/jq/) filter, urlencoded
 - DEST: has to be a valid URL, urlencoded
 
 If FILTER is left blank, the transformed JSON is returned to the client.
