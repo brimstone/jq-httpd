@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 	"strings"
 )
@@ -28,7 +27,6 @@ func errorjson(w http.ResponseWriter, code int, errString string) {
 }
 
 func (h httphandler) ServeHTTP(w http.ResponseWriter, request *http.Request) {
-	fmt.Println(request.URL.Path)
 	parts := strings.Split(request.URL.Path, "/")
 	if parts[1] == "jq" {
 		if len(parts) < 5 {

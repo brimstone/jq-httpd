@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"fmt"
 	"io/ioutil"
 	"net/http"
 	"time"
@@ -11,7 +10,6 @@ import (
 )
 
 func JqHandler(w http.ResponseWriter, clientRequest *http.Request, jqPattern string, serverURL string) {
-	fmt.Println("ServerURL:", serverURL)
 	// Report our source location
 	w.Header().Add("X-Source", "https://github.com/brimstone/jq-httpd")
 	// Report our return time
