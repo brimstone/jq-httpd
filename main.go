@@ -5,6 +5,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	apachelog "github.com/lestrrat/go-apache-logformat"
 )
 
 func main() {
@@ -14,5 +16,5 @@ func main() {
 	}
 	mymux := &httphandler{}
 	fmt.Println("Listening on :" + port)
-	log.Fatal(http.ListenAndServe(":"+port, mymux))
+	log.Fatal(http.ListenAndServe(":"+port, apachelog.CombinedLog.Wrap(mymux, os.Stderr)))
 }
