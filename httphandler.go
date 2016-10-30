@@ -8,7 +8,7 @@ import (
 )
 
 type errorJSON struct {
-	Error string `json:'error'`
+	Error string `json:"error"`
 }
 
 type httphandler struct {
