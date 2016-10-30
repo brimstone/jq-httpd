@@ -6,7 +6,8 @@ their way!
 
 Usage
 -----
-Start the server. It defaults to listening on port 8081.
+Start the server. It defaults to listening on port 8081. This can be changed
+with the `PORT` environment variable.
 
 Send JSON via POST, PUT, whatever to `/jq/FILTER/to/DEST`
 
