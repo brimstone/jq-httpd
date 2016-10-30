@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strings"
 )
 
 type errorJSON struct {
@@ -28,4 +29,16 @@ func errorjson(w http.ResponseWriter, code int, errString string) {
 
 func (h httphandler) ServeHTTP(w http.ResponseWriter, request *http.Request) {
 	fmt.Println(request.URL.Path)
+	parts := strings.Split(request.URL.Path, "/")
+	if parts[1] == "jq" {
+		if len(parts) < 5 {
+			errorjson(w, 404, "Expected url in format /jq/urlencode(jq filter)/to/urlencode(path)")
+			return
+		}
+		JqHandler(w,
+			request,
+			parts[2],
+			request.URL.Path[len(parts[2])+8:],
+		)
+	}
 }

@@ -17,7 +17,7 @@ func TestJqHandler(t *testing.T) {
 		bytes.NewBufferString("{\"name\":\"pickles\"}"),
 	)
 	w := httptest.NewRecorder()
-	main.JqHandler(w, req)
+	main.JqHandler(w, req, ".", "")
 	body, err := ioutil.ReadAll(w.Body)
 	if err != nil {
 		t.Fatal(err)
