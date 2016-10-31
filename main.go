@@ -9,6 +9,8 @@ import (
 	apachelog "github.com/lestrrat/go-apache-logformat"
 )
 
+var GitSummary string
+
 func main() {
 	port := os.Getenv("PORT")
 	if port == "" {

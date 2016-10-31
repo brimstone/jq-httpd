@@ -42,5 +42,10 @@ func (h httphandler) ServeHTTP(w http.ResponseWriter, request *http.Request) {
 			parts[2],
 			request.URL.Path[len(parts[2])+8:],
 		)
+		return
+	} else if parts[1] == "version" {
+		w.Header().Add("Content-Type", "text/plain")
+		w.Write([]byte(GitSummary))
+		return
 	}
 }
