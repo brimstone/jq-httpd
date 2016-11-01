@@ -13,11 +13,11 @@ import (
 func TestJqHandler(t *testing.T) {
 	req := httptest.NewRequest(
 		"GET",
-		"http://example.com/jq/./to/asdf",
+		"http://example.com/this/doesn't/matter",
 		bytes.NewBufferString("{\"name\":\"pickles\"}"),
 	)
 	w := httptest.NewRecorder()
-	main.JqHandler(w, req, ".", "")
+	main.JqHandler(w, req, ".", "to", "")
 	body, err := ioutil.ReadAll(w.Body)
 	if err != nil {
 		t.Fatal(err)

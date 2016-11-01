@@ -2,14 +2,16 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/brimstone/jq-httpd/jq"
 )
 
-func JqHandler(w http.ResponseWriter, clientRequest *http.Request, jqPattern string, serverURL string) {
+func JqHandler(w http.ResponseWriter, clientRequest *http.Request, jqPattern string, jqOrRaw string, serverURL string) {
 	// Report our return time
 	w.Header().Add("Content-Type", "application/json; charset=utf-8")
 	// figure out if we have the right number of parameters
@@ -45,6 +47,23 @@ func JqHandler(w http.ResponseWriter, clientRequest *http.Request, jqPattern str
 		// return the results to the user, for now
 		w.Write(result)
 		return
+	}
+
+	if jqOrRaw == "tq" {
+		results, err = jq.Process(userjson, serverURL)
+		if err != nil {
+			errorjson(w, 500, err.Error())
+			return
+		}
+
+		if len(results) == 0 {
+			errorjson(w, 400, "No Results")
+			return
+		}
+		serverURL = string(results[0])
+		serverURL = strings.TrimPrefix(serverURL, "\"")
+		serverURL = strings.TrimSuffix(serverURL, "\"")
+		fmt.Println(serverURL)
 	}
 
 	// Since /to/ is set, relay the request
