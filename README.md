@@ -40,6 +40,14 @@ Slack echo bot example:
 TODO
 ```
 
+Deploy
+------
+
+Build with `go build`, or with [projectbuilder](https://github.com/brimstone/projectbuilder), or deploy with docker:
+```
+docker run -d brimstone/jq-httpd
+```
+
 License
 -------
 AGPLv3
